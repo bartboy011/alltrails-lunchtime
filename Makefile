@@ -10,7 +10,7 @@ open:
 	open -a 'Google Chrome' http://localhost:3000
 
 workspace:
-	docker-compose run --build workspace bash
+	docker-compose run workspace bash
 
 logs:
 	docker-compose logs -f
