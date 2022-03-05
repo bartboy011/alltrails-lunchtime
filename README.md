@@ -20,6 +20,25 @@ Run the command `exit` to stop the workspace container.
 Now, **from outside the workspace**, run `make dev` to boot the web app. Next, run `make open` - you should a
 Hello, World page in the browser confirming your app is running!
 
+Finally, we need to create a User so that an API Key exists for authentication.
+
+```bash
+make workspace
+
+# wait to be dropped in
+rails console
+
+# Wait for the REPL to open
+User.create! email: "test", password: "test"
+User.first.api_key.token # Copy this value
+exit!
+
+# Wait for the repl to close
+exit
+```
+
+You now can begin interacting with the API!
+
 ### General development
 
 - `make dev`: starts the local web server in a detached state
