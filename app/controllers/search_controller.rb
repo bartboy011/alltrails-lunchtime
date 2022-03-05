@@ -4,6 +4,7 @@ class SearchController < ApplicationController
   prepend_before_action :authenticate_with_api_key!
 
   def search
-    render :plain => "success"
+    @results = [{name: 'test'}, {name: 'test2'}]
+    render 'results'
   end
 end
