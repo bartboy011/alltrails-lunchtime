@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   has_secure_password
   validates :email, presence: true, uniqueness: true
@@ -7,6 +9,6 @@ class User < ApplicationRecord
   private
 
   def create_user_api_key
-    self.create_api_key token: SecureRandom.hex
+    create_api_key token: SecureRandom.hex
   end
 end
