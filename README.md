@@ -53,3 +53,8 @@ with the API Key you copied above.
 Any changes you make to files on your local machine, within the workspace, or within the running web app
 will be synced across all three machines. When running rails, ruby or bundle commands, it is advised
 that you do so from within the container to ensure the greatest environmental parity.
+
+### Tests
+
+There are unit tests for a good deal of the functionality in here. To run them, enter the workspace with
+`make workspace` then simply run `rspec`.
