@@ -7,7 +7,7 @@ class SearchController < ApplicationController
 
   def search
     @results = MapsInterface.new.search(search_params)
-    render "search/results"
+    render "results"
   end
 
   private
