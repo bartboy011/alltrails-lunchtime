@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_secure_password
   validates :email, presence: true, uniqueness: true
   has_one :api_key, dependent: :destroy
+  has_many :favorites, dependent: :destroy
   after_create :create_user_api_key
 
   private
