@@ -7,4 +7,5 @@ json.array! @results do |result|
   json.photo result["photo"]
   json.rating result["rating"]
   json.ratings_count result["user_ratings_total"]
+  json.favorite result["favorite"]
 end
