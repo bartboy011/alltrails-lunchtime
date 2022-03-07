@@ -6,7 +6,14 @@ class SearchController < ApplicationController
   prepend_before_action :authenticate_with_api_key!
 
   def search
-    @results = [{name: "test"}, {name: "test2"}]
-    render "results"
+    @results = MapsInterface.new.search(search_params)
+    render "search/results"
+  end
+
+  private
+
+  # Will return a string, not a hash, since there's only the one param
+  def search_params
+    params.require(:search)
   end
 end

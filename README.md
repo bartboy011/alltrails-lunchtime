@@ -9,7 +9,8 @@ Depedencies:
 - Docker for Mac
 - Docker Compose (should be installed automatically, but ensure it is present with `which docker-compose`)
 
-Clone the repository locally, then run `make workspace`. This will build and then drop you into a bash
+Clone the repository locally, then run `cp .env.dist .env`. In the `.env` file, set the Google Maps API Key
+env var. Then run `make workspace`. This will build and then drop you into a bash
 session within the workspace container.
 
 Next, **from within the workspace container**, run `bin/rails db:schema:load`. This will create a SQLite3
@@ -45,7 +46,7 @@ You now can begin interacting with the API!
 - `make workspace`: opens a bash session in a separate, but identical container that is not running the web server
 - `make logs`: a proxy command to `docker-compose logs -f`
 - `make stop`: a proxy command to `docker-compose down`
-- `make open`: opens the Chrome browser to the hello, world page (only available in local environment)
+- `make open`: opens the Chrome browser to the hello, world page
 
 Any changes you make to files on your local machine, within the workspace, or within the running web app
 will be synced across all three machines. When running rails, ruby or bundle commands, it is advised
