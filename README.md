@@ -38,7 +38,9 @@ exit!
 exit
 ```
 
-You now can begin interacting with the API!
+You now can begin interacting with the API! Open up Postman, and import from the `postman` directory in this repo
+the `AllTrails Lunchtime.postman_collection.json` file. In the variables tab, replace the `auth` variable
+with the API Key you copied above.
 
 ### General development
 
