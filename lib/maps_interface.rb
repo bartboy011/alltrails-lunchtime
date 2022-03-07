@@ -1,11 +1,19 @@
 class MapsInterface
+  def self.api_missing_key_error_string
+    "You are missing the required Google Maps API Key in your environment."
+  end
+
+  def self.api_missing_primary_location_error_string
+    "You are missing the required latitude and longitude to search near."
+  end
+
   def initialize(conn = nil)
     @conn = conn || client_factory
   end
 
   def search(input = "")
     if ENV["GOOGLE_MAPS_PRIMARY_LOCATION"].nil?
-      raise "You are missing the required latitude and longitude to search near."
+      raise MapsInterface.api_missing_primary_location_error_string
     end
 
     response = @conn.get("textsearch/json",
@@ -25,7 +33,7 @@ class MapsInterface
 
   def client_factory
     if ENV["GOOGLE_API_KEY"].nil?
-      raise "You are missing the required Google Maps API Key."
+      raise MapsInterface.api_missing_key_error_string
     end
 
     Faraday.new(
@@ -53,7 +61,7 @@ class MapsInterface
     result["photo"] = Rails.cache.fetch(cache_key, expires_in: 12.hours) do
       response = @conn.get(
         "photo",
-        query: {maxwidth: 256, photo_reference: first_photo["photo_reference"]}
+        {maxwidth: 256, photo_reference: first_photo["photo_reference"]}
       )
 
       "data:#{response.headers["content-type"]};base64," + Base64.strict_encode64(response.body)
